@@ -18,7 +18,11 @@ my_fruit_list = my_fruit_list.set_index('Fruit')
 
 #Create a user-interactive widget called a Multi-Select (a pick list), that will allow users to pick the fruits they want in their smoothies
 #now filtered the table data based on the fruits a customer will choose, so we pre-populate the list
-streamlit.multiselect("Pick some fruits:", list(my_fruit_list.index), ['Avocado', 'Strawberries'])
+#put this list of selected fruits into a variable called fruits_selected
+fruits_selected = streamlit.multiselect("Pick some fruits:", list(my_fruit_list.index), ['Avocado', 'Strawberries'])
+
+#now use the fruits in the fruits_selected list to pull rows from the full dataset, and assign the data to a variable called fruits_to_show
+fruits_to_show = my_fruit_list.loc[fruits_selected] #this is from pandas.dataframe.loc, which accesses the group of rows and columns by label or boolean array (loc)
 
 #Display the table on the page
 streamlit.dataframe(my_fruit_list)
