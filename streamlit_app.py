@@ -17,7 +17,8 @@ my_fruit_list = pandas.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.co
 my_fruit_list = my_fruit_list.set_index('Fruit')
 
 #Create a user-interactive widget called a Multi-Select (a pick list), that will allow users to pick the fruits they want in their smoothies
-streamlit.multiselect("Pick some fruits:", list(my_fruit_list.index))
+#now filtered the table data based on the fruits a customer will choose, so we pre-populate the list
+streamlit.multiselect("Pick some fruits:", list(my_fruit_list.index), ['Avocado', 'Strawberries'])
 
 #Display the table on the page
 streamlit.dataframe(my_fruit_list)
